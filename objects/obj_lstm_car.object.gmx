@@ -26,10 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>///Initialize the neural net
-   scr_lstm_create(5, 2, 2);
+   lstm_create(5, 2, 2);
 
 //Initialize weights
-   scr_LSTM_initialize();
+   lstm_initialize();
    
    
 //Fitness (are you into fitness?)
@@ -118,8 +118,6 @@ image_yscale = 0.5
             <kind>1</kind>
             <string>if active
 {
-  var target = obj_target;
-  
   //Give input
      inputs[0] = normalize(scr_dis_to_solid(image_angle+90), 0, 300)
      inputs[1] = normalize(scr_dis_to_solid(image_angle+45), 0, 300)
@@ -134,7 +132,7 @@ image_yscale = 0.5
      inputs[4] = scr_dis_to_solid(image_angle-90)
      */
   //Feed forward
-     scr_lstm_feedforward();
+     lstm_feedforward();
 
 }
 </string>
@@ -267,7 +265,7 @@ if active
   var _fitness = -99999;
   var _fittest = noone
   
-  with(obj_car){
+  with(obj_lstm_car){
           //If current instance has higher fitness than remembered instance
           if active{
             if(fitness &gt; _fitness){
@@ -381,10 +379,9 @@ if active
             <kind>1</kind>
             <string>///Compute Fitness
 
-//agent_score += -distance_to_object(obj_target);
 point_in_time += 1;
 
-//fitness = agent_score/point_in_time;
+
 </string>
           </argument>
         </arguments>

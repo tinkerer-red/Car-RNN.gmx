@@ -1,4 +1,4 @@
-///scr_nn_create(inputs, hidden_layers, outputs)
+///lstm_create(inputs, hidden_layers, outputs)
 
 input_layer = argument0; //How many input nodes
 hidden_layer = argument1; //How many hidden layer neuron
@@ -14,6 +14,7 @@ output_layer = argument2; //How many output layer neuron
         neurons[i] = 0;
         for(var j=0; j<input_layer; j++){
             weights[i, j] = 0;
+            cell_state[i, j] = 0;
         }
     }
     
@@ -22,5 +23,12 @@ output_layer = argument2; //How many output layer neuron
         outputs[i] = 0;
         for(var j=0; j<hidden_layer; j++){
             output_weights[i, j] = 0;
+        }
+    }
+
+//Cell State Layer    
+    for(var i=0; i<array_length_1d(neurons); i++){
+        for(var j=0; j<array_length_1d(inputs); j++){
+            cell_state[i, j] = 0;
         }
     }

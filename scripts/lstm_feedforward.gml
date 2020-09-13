@@ -1,4 +1,4 @@
-///scr_lstm_feedforward()
+///lstm_feedforward()
 
 //Reference Video:  https://www.youtube.com/watch?v=8HyCNIVRbSU&list=PLPVQ5NVokFdRulZElCQI_lAptMliO7ODd&index=4&t=0s
 

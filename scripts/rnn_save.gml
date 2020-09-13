@@ -1,4 +1,4 @@
-/// scr_lstm_save(filename)
+/// rnn_save(filename)
 
 
 var _filename = argument[0];
@@ -7,23 +7,10 @@ var _filename = argument[0];
 
 var _map = ds_map_create()
 
-///forget layer
-var forget_list = ds_list_create()
-
-for(var i=0; i<hidden_layer; i++){ 
-  for(var j=0; j<input_layer; j++){
-    ds_list_add(forget_list,  cell_state[i, j]);
-  }
-}
-
-ds_map_add_list(_map, "forget_layer_weights", forget_list)
-
-
-
 //Hidden Layer    
 var _list = ds_list_create()
 
-for(var i=0; i<hidden_layer; i++){ 
+for(var i=0; i<hidden_layer; i++){    
   for(var j=0; j<input_layer; j++){
     ds_list_add(_list,  weights[i, j]);
   }

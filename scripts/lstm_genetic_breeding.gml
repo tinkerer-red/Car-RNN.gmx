@@ -1,4 +1,4 @@
-///genetic_breeding(fittest_simulation)
+///lstm_genetic_breeding(fittest_simulation)
 
 
 var fit = argument0

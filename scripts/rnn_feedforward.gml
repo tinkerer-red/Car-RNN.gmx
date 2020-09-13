@@ -1,4 +1,4 @@
-///scr_nn_feedforward()
+///rnn_feedforward()
 
 //Reference Video:  https://www.youtube.com/watch?v=LHXXI4-IEns
 

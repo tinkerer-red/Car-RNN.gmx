@@ -28,8 +28,8 @@
             <string>randomize();
 
 //Create multiple arrow heads
-    for(var i=0; i&lt;100; i++){
-        nn_obj[i] = instance_create(x, y, obj_car);
+    for(var i=0; i&lt;50; i++){
+        nn_obj[i] = instance_create(x, y, obj_lstm_car);
         /*
         if (i mod 10 = 0){
         nn_obj[i].visible = true
@@ -109,11 +109,11 @@ event_user(0)
             <kind>1</kind>
             <string>active_num = 0
 
-with (obj_car){
-  if (!active) obj_lstm.active_num++;
+with (obj_lstm_car){
+  if (!active) obj_lstm_main.active_num++;
 }
 
-if instance_number(obj_car) = active_num
+if instance_number(obj_lstm_car) = active_num
 {
   event_user(0);
 }
@@ -145,10 +145,10 @@ if instance_number(obj_car) = active_num
     var _fitness = -99999;  //Fitness score of the most fit agent
     var last_fittest = _fittest  //Help keep track of genorational evolution jumps
     
-    with(obj_car){
+    with(obj_lstm_car){
         //If current instance has higher fitness than remembered instance
         if(fitness &gt; _fitness){
-            obj_lstm._fittest = id;
+            obj_lstm_main._fittest = id;
             _fitness = fitness;
         }
     }
@@ -156,8 +156,8 @@ if instance_number(obj_car) = active_num
     if (_fittest != last_fittest){
       genoration++
       with _fittest{
-        scr_lstm_save(working_directory+"lstm-Neurons.json")
-        scr_lstm_save(working_directory+"lstm-Neurons"+string(hidden_layer)+"Gen"+string(obj_lstm.genoration)+".json")
+        lstm_save(working_directory+"lstm-Neurons.json")
+        lstm_save(working_directory+"lstm-Neurons"+string(hidden_layer)+"Gen"+string(obj_lstm_main.genoration)+".json")
       }
     }
     
@@ -177,12 +177,12 @@ if instance_number(obj_car) = active_num
         //_output_bias = output_bias;
     }
 
-    with(obj_car){
+    with(obj_lstm_car){
       ds_list_clear(hascheckpoint)
       active = true
-        if(id != obj_lstm._fittest){
+        if(id != obj_lstm_main._fittest){
             //Breed DNA
-            genetic_breeding(obj_lstm._fittest)
+            lstm_genetic_breeding(obj_lstm_main._fittest)
             
             //Mutate
             event_user(1);
@@ -201,6 +201,34 @@ if instance_number(obj_car) = active_num
     
     
     alarm_set(0,room_speed*60*3)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (_fittest != noone) {
+  with _fittest {
+    draw_neurons(0,0,256,128)
+    draw_neurons_animated(256, 0, 512,128)
+  }
+}
 </string>
           </argument>
         </arguments>
@@ -227,8 +255,8 @@ if instance_number(obj_car) = active_num
 
 if _fittest != noone{
   draw_set_colour(c_lime);
-  with(obj_car){
-    if id = obj_lstm._fittest{
+  with(obj_lstm_car){
+    if id = obj_lstm_main._fittest{
       draw_line(x, y, x+lengthdir_x(64,image_angle), y+lengthdir_y(64,image_angle));
     }
   }
@@ -256,8 +284,8 @@ if _fittest != noone{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with obj_car{
-  scr_lstm_load(working_directory+"lstm-Neurons.json")
+            <string>with obj_lstm_car{
+  lstm_load(working_directory+"lstm-Neurons.json")
   event_user(2)
 }
 event_user(0)

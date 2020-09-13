@@ -1,4 +1,4 @@
-/// scr_lstm_load(filename)
+/// rnn_load(filename)
 
 
 var _filename = argument[0];
@@ -9,25 +9,6 @@ var _json = buffer_read( _buffer, buffer_string );
 buffer_delete( _buffer );
 
 var _map = json_decode( _json);
-
-
-
-//forget layer
-var forget_layer_weights_list = _map[? "forget_layer_weights"]
-
-//safety check
-if ds_list_size(forget_layer_weights_list) != hidden_layer*input_layer{
-  show_message("Loaded Forget Layer neurons are not equal to the number of current Forget Layer neurons")
-}
-
-for(var i=0; i<hidden_layer; i++){    
-  for(var j=0; j<input_layer; j++){
-    cell_state[i, j] = ds_list_find_value(forget_layer_weights_list, 0)
-    ds_list_delete(forget_layer_weights_list, 0)
-  }
-}
-
-
 
 //Hidden Layer    
 var hidden_layer_weights_list = _map[? "hidden_layer_weights"]
