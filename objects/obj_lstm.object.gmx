@@ -28,7 +28,7 @@
             <string>randomize();
 
 //Create multiple arrow heads
-    for(var i=0; i&lt;5; i++){
+    for(var i=0; i&lt;100; i++){
         nn_obj[i] = instance_create(x, y, obj_car);
         /*
         if (i mod 10 = 0){
@@ -181,12 +181,8 @@ if instance_number(obj_car) = active_num
       ds_list_clear(hascheckpoint)
       active = true
         if(id != obj_lstm._fittest){
-            //Copy DNA
-            cell_state = _forget;
-            weights = _weights;
-            //bias = _bias;
-            output_weights = _output_weights;
-            //output_bias = _output_bias;
+            //Breed DNA
+            genetic_breeding(obj_lstm._fittest)
             
             //Mutate
             event_user(1);
@@ -228,12 +224,15 @@ if instance_number(obj_car) = active_num
           <argument>
             <kind>1</kind>
             <string>///Draw fitness
-/*
-draw_set_colour(c_lime);
-with(obj_car){
-  if active{
-    draw_text(x, y, fitness);
+
+if _fittest != noone{
+  draw_set_colour(c_lime);
+  with(obj_car){
+    if id = obj_lstm._fittest{
+      draw_line(x, y, x+lengthdir_x(64,image_angle), y+lengthdir_y(64,image_angle));
+    }
   }
+  draw_set_colour(c_white)
 }
 </string>
           </argument>
@@ -261,6 +260,7 @@ with(obj_car){
   scr_lstm_load(working_directory+"lstm-Neurons.json")
   event_user(2)
 }
+event_user(0)
 </string>
           </argument>
         </arguments>

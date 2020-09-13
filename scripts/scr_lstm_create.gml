@@ -25,3 +25,10 @@ output_layer = argument2; //How many output layer neuron
             output_weights[i, j] = 0;
         }
     }
+
+//Cell State Layer    
+    for(var i=0; i<array_length_1d(neurons); i++){
+        for(var j=0; j<array_length_1d(inputs); j++){
+            cell_state[i, j] = 0;
+        }
+    }

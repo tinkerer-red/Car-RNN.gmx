@@ -16,13 +16,15 @@ var _map = json_decode( _json);
 var forget_layer_weights_list = _map[? "forget_layer_weights"]
 
 //safety check
-if ds_list_size(forget_layer_weights_list) != input_layer{
+if ds_list_size(forget_layer_weights_list) != hidden_layer*input_layer{
   show_message("Loaded Forget Layer neurons are not equal to the number of current Forget Layer neurons")
 }
 
-for(var i=0; i<input_layer; i++){
-    cell_state[i] = ds_list_find_value(forget_layer_weights_list, 0)
+for(var i=0; i<hidden_layer; i++){    
+  for(var j=0; j<input_layer; j++){
+    cell_state[i, j] = ds_list_find_value(forget_layer_weights_list, 0)
     ds_list_delete(forget_layer_weights_list, 0)
+  }
 }
 
 
@@ -36,7 +38,6 @@ if ds_list_size(hidden_layer_weights_list) != hidden_layer*input_layer{
 }
 
 for(var i=0; i<hidden_layer; i++){    
-  
   for(var j=0; j<input_layer; j++){
     weights[i, j] = ds_list_find_value(hidden_layer_weights_list, 0)
     ds_list_delete(hidden_layer_weights_list, 0)

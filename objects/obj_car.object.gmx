@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>///Initialize the neural net
-   scr_lstm_create(5, 10, 2);
+   scr_lstm_create(5, 2, 2);
 
 //Initialize weights
    scr_LSTM_initialize();
@@ -92,7 +92,7 @@ image_yscale = 0.5
 {
   ///Delay compute fitness
   event_user(0);
-  alarm[0] = 5;
+  alarm[0] = 3;
 }
 </string>
           </argument>
@@ -121,16 +121,18 @@ image_yscale = 0.5
   var target = obj_target;
   
   //Give input
+     inputs[0] = normalize(scr_dis_to_solid(image_angle+90), 0, 300)
+     inputs[1] = normalize(scr_dis_to_solid(image_angle+45), 0, 300)
+     inputs[2] = normalize(scr_dis_to_solid(image_angle+00), 0, 300)
+     inputs[3] = normalize(scr_dis_to_solid(image_angle-45), 0, 300)
+     inputs[4] = normalize(scr_dis_to_solid(image_angle-90), 0, 300)
+     /*/
      inputs[0] = scr_dis_to_solid(image_angle+90)
      inputs[1] = scr_dis_to_solid(image_angle+45)
-     //inputs[1] = (inputs[0]+inputs[2])/2
      inputs[2] = scr_dis_to_solid(image_angle+00)
-     //inputs[3] = (inputs[2]+inputs[4])/2
      inputs[3] = scr_dis_to_solid(image_angle-45)
-     //inputs[5] = (inputs[4]+inputs[6])/2
      inputs[4] = scr_dis_to_solid(image_angle-90)
-     //inputs[7] = (inputs[6]+inputs[8])/2
-     
+     */
   //Feed forward
      scr_lstm_feedforward();
 
@@ -161,7 +163,6 @@ image_yscale = 0.5
   var move_speed = 3; //How fast the arrow head move
 
     //Turn
-        var left = 0, right = 0;
         image_angle += turn_speed*(outputs[0]);
     
     //Move
@@ -206,7 +207,6 @@ if active
   }
   
   fitness += 5+move_speed*outputs[1]
-
 }
 </string>
           </argument>
@@ -264,9 +264,8 @@ if active
             <kind>1</kind>
             <string>//focus camera
 
-if (image_blend = c_lime){
-  var _fitness = fitness;
-  var _fittest = id
+  var _fitness = -99999;
+  var _fittest = noone
   
   with(obj_car){
           //If current instance has higher fitness than remembered instance
@@ -279,7 +278,7 @@ if (image_blend = c_lime){
       }
       
   view_object = _fittest
-}
+
 </string>
           </argument>
         </arguments>
@@ -307,7 +306,7 @@ if (image_blend = c_lime){
 //Back to start position
     x = xstart;
     y = ystart;
-    image_angle = 0
+    image_angle = random_range(22.5,-22.5)
 
 //Reset Vars
     fitness = 0;
@@ -341,21 +340,21 @@ if (image_blend = c_lime){
             <kind>1</kind>
             <string>///Mutate
 //Mutate cell state weights
-//    for(var i=0; i&lt;array_height_2d(inputs) ; i++){
-//            cell_state[i] = mutate(cell_state[i], 0.8);
-//    }
+    for(var i=0; i&lt;array_height_2d(inputs) ; i++){
+            cell_state[i] = mutate(cell_state[i], 0.03);
+    }
     
 //Mutate neuron weights
     for(var j=0; j&lt;array_height_2d(weights) ; j++){
         for(var k=0; k&lt;array_length_2d(weights, j); k++){
-           // weights[j,k] = mutate(weights[j,k], 0.1);
+            weights[j,k] = mutate(weights[j,k], 0.03);
         }
     }
     
 //Mutate output weights    
     for(var j=0; j&lt;array_height_2d(output_weights) ; j++){
         for(var k=0; k&lt;array_length_2d(output_weights, j); k++){            
-            //output_weights[j,k] = mutate(output_weights[j,k], 0.1);
+            output_weights[j,k] = mutate(output_weights[j,k], 0.03);
         }
     }
 </string>
