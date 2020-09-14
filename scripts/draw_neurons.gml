@@ -72,7 +72,7 @@ for(var i=0; i<hidden_layer; i++){
     var green = max(0, 255*weight)
     var red = max(0, 255*weight*-1)
     
-    color = make_colour_rgb(red, green, 127);
+    color = make_colour_rgb(red, green, 000);
     draw_set_color(color)
     draw_line(input_coord_array[j,0], input_coord_array[j,1], neuron_coord_array[i,0], neuron_coord_array[i,1])
   }
@@ -87,7 +87,7 @@ for(var i=0; i<output_layer; i++){
     var green = max(0, 255*weight)
     var red = max(0, 255*weight*-1)
     
-    color = make_colour_rgb(red, green, 127);
+    color = make_colour_rgb(red, green, 000);
     draw_set_color(color)
     draw_line(output_coord_array[i,0], output_coord_array[i,1], neuron_coord_array[j,0], neuron_coord_array[j,1])
   }

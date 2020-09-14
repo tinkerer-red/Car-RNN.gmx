@@ -119,12 +119,14 @@ image_yscale = 0.5
             <string>if active
 {
   //Give input
-     inputs[0] = normalize(scr_dis_to_solid(image_angle+90), 0, 300)
-     inputs[1] = normalize(scr_dis_to_solid(image_angle+45), 0, 300)
-     inputs[2] = normalize(scr_dis_to_solid(image_angle+00), 0, 300)
-     inputs[3] = normalize(scr_dis_to_solid(image_angle-45), 0, 300)
-     inputs[4] = normalize(scr_dis_to_solid(image_angle-90), 0, 300)
-     /*/
+     inputs[0] = normalize(scr_dis_to_solid(image_angle+90), 0, 75)-1
+     inputs[1] = normalize(scr_dis_to_solid(image_angle+45), 0, 75)-1
+     inputs[2] = normalize(scr_dis_to_solid(image_angle+00), 0, 75)-1
+     inputs[3] = normalize(scr_dis_to_solid(image_angle-45), 0, 75)-1
+     inputs[4] = normalize(scr_dis_to_solid(image_angle-90), 0, 75)-1
+     //we normalize this way so we get a value -1 to 1 giving a larger range of numbers for the NN to handle
+     
+     /*/ this method here will cause for exploding values so it's not an ideal method, though it can produce results
      inputs[0] = scr_dis_to_solid(image_angle+90)
      inputs[1] = scr_dis_to_solid(image_angle+45)
      inputs[2] = scr_dis_to_solid(image_angle+00)
@@ -271,6 +273,7 @@ if active
             if(fitness &gt; _fitness){
                 _fitness = fitness;
                 _fittest = id;
+                obj_lstm_main._fittest = id;
             }
           }
       }
@@ -339,20 +342,20 @@ if active
             <string>///Mutate
 //Mutate cell state weights
     for(var i=0; i&lt;array_height_2d(inputs) ; i++){
-            cell_state[i] = mutate(cell_state[i], 0.03);
+            cell_state[i] = mutate(cell_state[i], 0.05);
     }
     
 //Mutate neuron weights
     for(var j=0; j&lt;array_height_2d(weights) ; j++){
         for(var k=0; k&lt;array_length_2d(weights, j); k++){
-            weights[j,k] = mutate(weights[j,k], 0.03);
+            weights[j,k] = mutate(weights[j,k], 0.05);
         }
     }
     
 //Mutate output weights    
     for(var j=0; j&lt;array_height_2d(output_weights) ; j++){
         for(var k=0; k&lt;array_length_2d(output_weights, j); k++){            
-            output_weights[j,k] = mutate(output_weights[j,k], 0.03);
+            output_weights[j,k] = mutate(output_weights[j,k], 0.05);
         }
     }
 </string>

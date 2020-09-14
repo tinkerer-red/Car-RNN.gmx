@@ -40,7 +40,7 @@ for(var i = 0; i < input_count; i++){
     var green = max(0, 255*weight)
     var red = max(0, 255*weight*-1)
     
-    color = make_colour_rgb(red, green, 127);
+    color = make_colour_rgb(red, green, 000);
     draw_set_color(color)
     
     draw_circle(x1+circle_radious, (y1+inputs_radious)+inputs_spacing*i, circle_radious, 0)
@@ -59,7 +59,7 @@ for(var i = 0; i < neuron_count; i++){
     var green = max(0, 255*weight)
     var red = max(0, 255*weight*-1)
     
-    color = make_colour_rgb(red, green, 127);
+    color = make_colour_rgb(red, green, 000);
     draw_set_color(color)
     
     draw_circle(x1+(x2-x1)/2, (y1+neuron_radious)+neuron_spacing*i, circle_radious, 0)
@@ -78,7 +78,7 @@ for(var i = 0; i < output_count; i++){
     var green = max(0, 255*weight)
     var red = max(0, 255*weight*-1)
     
-    color = make_colour_rgb(red, green, 127);
+    color = make_colour_rgb(red, green, 000);
     draw_set_color(color)
     
     draw_circle(x2-circle_radious, (y1+outputs_radious)+outputs_spacing*i, circle_radious, 0)
@@ -98,7 +98,7 @@ for(var i=0; i<hidden_layer; i++){
     var green = max(0, 255*weight)
     var red = max(0, 255*weight*-1)
     
-    color = make_colour_rgb(red, green, 127);
+    color = make_colour_rgb(red, green, 000);
     draw_set_color(color)
     draw_line(input_coord_array[j,0], input_coord_array[j,1], neuron_coord_array[i,0], neuron_coord_array[i,1])
   }
@@ -113,7 +113,7 @@ for(var i=0; i<output_layer; i++){
     var green = max(0, 255*weight)
     var red = max(0, 255*weight*-1)
     
-    color = make_colour_rgb(red, green, 127);
+    color = make_colour_rgb(red, green, 000);
     draw_set_color(color)
     draw_line(output_coord_array[i,0], output_coord_array[i,1], neuron_coord_array[j,0], neuron_coord_array[j,1])
   }

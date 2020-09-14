@@ -110,7 +110,7 @@ event_user(0)
             <string>active_num = 0
 
 with (obj_rnn_car){
-  if (!active) obj_nn_main.active_num++;
+  if (!active) obj_rnn_main.active_num++;
 }
 
 if instance_number(obj_rnn_car) = active_num

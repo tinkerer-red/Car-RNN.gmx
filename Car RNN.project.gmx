@@ -40,9 +40,13 @@
     <script>scripts\mutate.gml</script>
     <script>scripts\scr_dis_to_solid.gml</script>
     <script>scripts\string_byte_list.gml</script>
-    <script>scripts\draw_neurons.gml</script>
-    <script>scripts\draw_neurons_animated.gml</script>
+    <scripts name="Drawing">
+      <script>scripts\draw_neurons.gml</script>
+      <script>scripts\draw_neurons_animated.gml</script>
+      <script>scripts\weight_to_color.gml</script>
+    </scripts>
   </scripts>
+  <shaders name="shaders"/>
   <objects name="objects">
     <objects name="rnn">
       <object>objects\obj_rnn_car</object>

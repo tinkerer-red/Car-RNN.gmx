@@ -28,7 +28,7 @@
             <string>randomize();
 
 //Create multiple arrow heads
-    for(var i=0; i&lt;50; i++){
+    for(var i=0; i&lt;250; i++){
         nn_obj[i] = instance_create(x, y, obj_lstm_car);
         /*
         if (i mod 10 = 0){
@@ -225,8 +225,12 @@ if instance_number(obj_lstm_car) = active_num
             <kind>1</kind>
             <string>if (_fittest != noone) {
   with _fittest {
-    draw_neurons(0,0,256,128)
-    draw_neurons_animated(256, 0, 512,128)
+    draw_set_colour(c_black)
+    draw_rectangle(0,0,255,128,0)
+    draw_neurons(0,0,255,128)
+    draw_set_colour(c_black)
+    draw_rectangle(display_get_gui_width()-256, 0, display_get_gui_width()-1, 128, 0)
+    draw_neurons_animated(display_get_gui_width()-256, 0, display_get_gui_width()-1,128)
   }
 }
 </string>
@@ -257,7 +261,17 @@ if _fittest != noone{
   draw_set_colour(c_lime);
   with(obj_lstm_car){
     if id = obj_lstm_main._fittest{
-      draw_line(x, y, x+lengthdir_x(64,image_angle), y+lengthdir_y(64,image_angle));
+      weight_to_color(inputs[0])
+      draw_line(x, y, x+lengthdir_x(150,image_angle+90), y+lengthdir_y(150,image_angle+90));
+      weight_to_color(inputs[1])
+      draw_line(x, y, x+lengthdir_x(150,image_angle+45), y+lengthdir_y(150,image_angle+45));
+      weight_to_color(inputs[2])
+      draw_line(x, y, x+lengthdir_x(150,image_angle), y+lengthdir_y(150,image_angle));
+      weight_to_color(inputs[3])
+      draw_line(x, y, x+lengthdir_x(150,image_angle-45), y+lengthdir_y(150,image_angle-45));
+      weight_to_color(inputs[4])
+      draw_line(x, y, x+lengthdir_x(150,image_angle-90), y+lengthdir_y(150,image_angle-90));
+      
     }
   }
   draw_set_colour(c_white)
