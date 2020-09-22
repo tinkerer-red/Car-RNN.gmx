@@ -32,21 +32,30 @@
       <script>scripts\lstm_genetic_breeding.gml</script>
       <script>scripts\lstm_clone_fittest.gml</script>
     </scripts>
+    <scripts name="lstm array (advanced)">
+      <script>scripts\lstm_array_create.gml</script>
+      <script>scripts\lstm_array_initialize.gml</script>
+      <script>scripts\lstm_array_feedforward.gml</script>
+      <scripts name="array Maths">
+        <script>scripts\array_multiply.gml</script>
+        <script>scripts\array_multiply_real.gml</script>
+        <script>scripts\array_add.gml</script>
+      </scripts>
+    </scripts>
     <scripts name="Maths">
       <script>scripts\tanh.gml</script>
       <script>scripts\normalize.gml</script>
       <script>scripts\sigmoid.gml</script>
     </scripts>
-    <script>scripts\mutate.gml</script>
-    <script>scripts\scr_dis_to_solid.gml</script>
-    <script>scripts\string_byte_list.gml</script>
     <scripts name="Drawing">
       <script>scripts\draw_neurons.gml</script>
       <script>scripts\draw_neurons_animated.gml</script>
       <script>scripts\weight_to_color.gml</script>
     </scripts>
+    <script>scripts\mutate.gml</script>
+    <script>scripts\scr_dis_to_solid.gml</script>
+    <script>scripts\string_byte_list.gml</script>
   </scripts>
-  <shaders name="shaders"/>
   <objects name="objects">
     <objects name="rnn">
       <object>objects\obj_rnn_car</object>
@@ -58,8 +67,10 @@
     </objects>
     <object>objects\obj_wall</object>
     <object>objects\obj_checkpoint</object>
+    <object>objects\obj_lstm_array</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room1</room>
     <room>rooms\room0</room>
   </rooms>
   <help>
