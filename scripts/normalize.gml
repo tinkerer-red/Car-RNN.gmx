@@ -9,7 +9,7 @@ if is_array(argument0){
   for (var i = 0; i < array_length_2d(_x,0); i++){
     for (var j = 0; j < array_height_2d(_x); j++){
       // initialize the cell
-      _ans[i,j] = (_x[i,j]-argument1)/(argument2-argument1); //a1[i,j] * r;
+      _ans[j,i] = (_x[j,i]-argument1)/(argument2-argument1); //a1[i,j] * r;
     }
   }
   return(_ans);

@@ -35,17 +35,29 @@
     <scripts name="lstm array (advanced)">
       <script>scripts\lstm_array_create.gml</script>
       <script>scripts\lstm_array_initialize.gml</script>
+      <script>scripts\lstm_array_backprop_initialize.gml</script>
       <script>scripts\lstm_array_feedforward.gml</script>
+      <script>scripts\lstm_array_backprop.gml</script>
       <scripts name="array Maths">
         <script>scripts\array_multiply.gml</script>
+        <script>scripts\array_matrix_multiply.gml</script>
         <script>scripts\array_multiply_real.gml</script>
+        <script>scripts\array_point_divide.gml</script>
         <script>scripts\array_add.gml</script>
+        <script>scripts\array_clamp.gml</script>
+      </scripts>
+      <scripts name="String to array">
+        <script>scripts\string_byte_array.gml</script>
+        <script>scripts\byte_array_to_string.gml</script>
+        <script>scripts\clean_string.gml</script>
+        <script>scripts\string_to_data.gml</script>
       </scripts>
     </scripts>
     <scripts name="Maths">
       <script>scripts\tanh.gml</script>
       <script>scripts\normalize.gml</script>
       <script>scripts\sigmoid.gml</script>
+      <script>scripts\calculate_cost.gml</script>
     </scripts>
     <scripts name="Drawing">
       <script>scripts\draw_neurons.gml</script>
@@ -54,7 +66,7 @@
     </scripts>
     <script>scripts\mutate.gml</script>
     <script>scripts\scr_dis_to_solid.gml</script>
-    <script>scripts\string_byte_list.gml</script>
+    <script>scripts\dirivitive_cost.gml</script>
   </scripts>
   <objects name="objects">
     <objects name="rnn">

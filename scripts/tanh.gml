@@ -12,7 +12,7 @@ if is_array(_x){
   for (var i = 0; i < array_length_2d(_x,0); i++){
     for (var j = 0; j < array_height_2d(_x); j++){
       // initialize the cell
-      _ans[i,j] = (power(_e, 2*_x[i,j])-1)/(power(_e, 2*_x[i,j])+1); //a1[i,j] * r;
+      _ans[j,i] = (power(_e, 2*_x[j,i])-1)/(power(_e, 2*_x[j,i])+1); //a1[j,i] * r;
     }
   }
   return(_ans);

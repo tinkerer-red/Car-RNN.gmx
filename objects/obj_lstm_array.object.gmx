@@ -25,24 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initialize the neural net
-   lstm_array_create(2, 2, 2);
+            <string>///test
 
-//Initialize weights
-   randomize()
-   lstm_array_initialize();
-   
-   
-//Fitness (are you into fitness?)
-   fitness = 0;
-   point_in_time = 0;
-   agent_score = 0;
-   alarm[0] = 5;
-   active = true
-   hascheckpoint = ds_list_create()
-///weights and bias
-//bias = 0;
-//output_bias = 0;
+array[0] = 0
+
+
+show_debug_message("array_height_2d(array) = "+string(array_height_2d(array)))
+show_debug_message("array = "+string(array))
+normalize(array, 0, 2)
 
 </string>
           </argument>
@@ -64,32 +54,85 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if active
-{
-  // create the psudo arrays
-  a1[0,0] = 0
-  a1[0,1] = 1
-  a1[1,0] = 2
-  a1[1,1] = 3
-  
-  a2[0,0] = 8
-  a2[0,1] = 6
-  a2[1,0] = 5
-  a2[1,1] = 2
-  
-  //Give input
-     ds_list_add(inputs, array_add(normalize(a1, 0, 4), -1))
-     ds_list_add(inputs, array_add(normalize(a2, 0, 4), -1))
+            <string>///Initialize the neural net
+   lstm_array_create(3, 3, 3, 15);
+
+//Initialize weights
+   randomize()
+   lstm_array_initialize();
+   lstm_array_backprop_initialize();
+   
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///initialize inputs
+
+str = "Hello There Lilit"
+str = clean_string(str)
+
+list = string_to_data(str, " ")
+
+str_output = "12345 abcde 67890"
+str_output = clean_string(str_output)
+
+output_list = string_to_data(str_output, " ")
+
+
+//Give input
+for (var i = 0; i &lt; ds_list_size(list); i++){
+     inputs[| i] = normalize(list[| i], 0, 126)
+     show_debug_message("list[| "+string(i)+"]"+string(list[| i]))
+}
      //we normalize this way so we get a value -1 to 1 giving a larger range of numbers for the NN to handle
-     show_debug_message("ds_list_find_value(inputs, 0) = "+string(ds_list_find_value(inputs, 0)))
-     show_debug_message("ds_list_find_value(inputs, 1) = "+string(ds_list_find_value(inputs, 1)))
-     
-     
-  //Feed forward
+
+for (var i = 0; i &lt; ds_list_size(outputs); i++){
+     desired_outputs[| i] = normalize(output_list[| i], 0, 126)
+     show_debug_message("output_list[| "+string(i)+"]"+string(output_list[| i]))
+}
+  
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Feed forward
      lstm_array_feedforward();
       
-     show_debug_message("############################################################")
-}
+
+
 </string>
           </argument>
         </arguments>
@@ -111,23 +154,72 @@
           <argument>
             <kind>1</kind>
             <string>///de-normalize, then print
+a=0
+repeat(20000){
 
-repeat(5){
-b1 = array_multiply_real(array_add(outputs[| 0], 1), 4);
-b2 = array_multiply_real(array_add(outputs[| 1], 1), 4);
+// set desired outputs
+//desired_outputs[| 0] = normalize(output_list[| 0], 0, 126)
+//desired_outputs[| 1] = normalize(output_list[| 1], 0, 126)
+//desired_outputs[| 2] = normalize(output_list[| 2], 0, 126)
 
-show_debug_message("outputs[| 0] = "+string(outputs[| 0]))
-show_debug_message("outputs[| 1] = "+string(outputs[| 1]))
 
-show_debug_message("b1 = "+string(b1))
-show_debug_message("b2 = "+string(b2))
-show_debug_message("#######################################################")
+
+lstm_array_backprop(0.3)
+//show_debug_message("cost[| 0] = "+string(   array_add(array_add(cost[| 0], cost[| 1]), cost[| 2])   ))
+
+//show_debug_message("output_weights[| 0] = "+string(output_weights[| 0]))
+
+b0 = array_multiply_real(outputs[| 0], 126);
+b1 = array_multiply_real(outputs[| 1], 126);
+b2 = array_multiply_real(outputs[| 2], 126);
+
+var str_final = "";
+str_final += byte_array_to_string(b0);
+str_final += byte_array_to_string(b1);
+str_final += byte_array_to_string(b2);
+
+show_debug_message("str_final = "+str_final)
+
+a++
+show_debug_message(string(a)+"/20000")
 //Feed forward
      lstm_array_feedforward();
 }
 
 
+b0 = array_multiply_real(outputs[| 0], 126);
+b1 = array_multiply_real(outputs[| 1], 126);
+b2 = array_multiply_real(outputs[| 2], 126);
 
+var str_final = "";
+str_final += byte_array_to_string(b0);
+str_final += byte_array_to_string(b1);
+str_final += byte_array_to_string(b2);
+
+show_debug_message("str_final = "+str_final)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>game_end()
 </string>
           </argument>
         </arguments>

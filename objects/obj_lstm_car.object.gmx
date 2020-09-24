@@ -307,7 +307,7 @@ if active
 //Back to start position
     x = xstart;
     y = ystart;
-    image_angle = random_range(22.5,-22.5)
+    image_angle = 0//random_range(22.5,-22.5)
 
 //Reset Vars
     fitness = 0;

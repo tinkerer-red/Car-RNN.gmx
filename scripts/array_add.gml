@@ -13,7 +13,7 @@ if is_array(argument0){
     for (var i = 0; i < array_length_2d(_x,0); i++){
       for (var j = 0; j < array_height_2d(_x); j++){
         // initialize the cell
-        _ans[i,j] = _x[i,j]+argument1; //a1[i,j];
+        _ans[j,i] = _x[j,i]+argument1; //a1[j,i];
       }
     }
     return(_ans);
@@ -26,7 +26,7 @@ if is_array(argument0){
     for (var i = 0; i < array_length_2d(_x,0); i++){
       for (var j = 0; j < array_height_2d(_x); j++){
         // initialize the cell
-        _ans[i,j] = _x[i,j]+_y[i,j]; //a1[i,j];
+        _ans[j,i] = _x[j,i]+_y[j,i]; //a1[j,i];
       }
     }
     return(_ans);
