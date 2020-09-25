@@ -14,7 +14,6 @@ output_layer = argument2; //How many output layer neuron
         neurons[i] = 0;
         for(var j=0; j<input_layer; j++){
             weights[i, j] = 0;
-            cell_state[i, j] = 0;
         }
     }
     

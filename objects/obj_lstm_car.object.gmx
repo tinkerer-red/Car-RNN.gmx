@@ -341,8 +341,10 @@ if active
             <kind>1</kind>
             <string>///Mutate
 //Mutate cell state weights
-    for(var i=0; i&lt;array_height_2d(inputs) ; i++){
-            cell_state[i] = mutate(cell_state[i], 0.05);
+    for(var i=0; i&lt;hidden_layer; i++){    
+        for(var j=0; j&lt;input_layer; j++){
+            cell_state[i, j] = mutate(cell_state[i, j], 0.05);
+        }
     }
     
 //Mutate neuron weights
