@@ -85,7 +85,7 @@ normalize(array, 0, 2)
             <kind>1</kind>
             <string>///initialize inputs
 
-str = "Hello There Lilit"
+str = "Hello There World"
 str = clean_string(str)
 
 list = string_to_data(str, " ")

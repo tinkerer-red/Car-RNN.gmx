@@ -32,7 +32,20 @@
       <script>scripts\lstm_genetic_breeding.gml</script>
       <script>scripts\lstm_clone_fittest.gml</script>
     </scripts>
-    <scripts name="lstm array (advanced)">
+    <scripts name="Maths">
+      <script>scripts\tanh.gml</script>
+      <script>scripts\normalize.gml</script>
+      <script>scripts\sigmoid.gml</script>
+      <script>scripts\calculate_cost.gml</script>
+    </scripts>
+    <scripts name="Drawing">
+      <script>scripts\draw_neurons.gml</script>
+      <script>scripts\draw_neurons_animated.gml</script>
+      <script>scripts\weight_to_color.gml</script>
+    </scripts>
+    <script>scripts\mutate.gml</script>
+    <script>scripts\scr_dis_to_solid.gml</script>
+    <scripts name="UNFINISHED">
       <script>scripts\lstm_array_create.gml</script>
       <script>scripts\lstm_array_initialize.gml</script>
       <script>scripts\lstm_array_backprop_initialize.gml</script>
@@ -52,21 +65,8 @@
         <script>scripts\clean_string.gml</script>
         <script>scripts\string_to_data.gml</script>
       </scripts>
+      <script>scripts\dirivitive_cost.gml</script>
     </scripts>
-    <scripts name="Maths">
-      <script>scripts\tanh.gml</script>
-      <script>scripts\normalize.gml</script>
-      <script>scripts\sigmoid.gml</script>
-      <script>scripts\calculate_cost.gml</script>
-    </scripts>
-    <scripts name="Drawing">
-      <script>scripts\draw_neurons.gml</script>
-      <script>scripts\draw_neurons_animated.gml</script>
-      <script>scripts\weight_to_color.gml</script>
-    </scripts>
-    <script>scripts\mutate.gml</script>
-    <script>scripts\scr_dis_to_solid.gml</script>
-    <script>scripts\dirivitive_cost.gml</script>
   </scripts>
   <objects name="objects">
     <objects name="rnn">
@@ -79,11 +79,11 @@
     </objects>
     <object>objects\obj_wall</object>
     <object>objects\obj_checkpoint</object>
-    <object>objects\obj_lstm_array</object>
+    <object>objects\UNFINISHED</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room1</room>
     <room>rooms\room0</room>
+    <room>rooms\room1</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
